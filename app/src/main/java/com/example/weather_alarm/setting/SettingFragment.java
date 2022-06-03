@@ -1,4 +1,4 @@
-package com.example.weather_alarm.weather;
+package com.example.weather_alarm.setting;
 
 import android.os.Bundle;
 
@@ -10,12 +10,13 @@ import android.view.ViewGroup;
 
 import com.example.weather_alarm.R;
 
-public class WeatherFragment extends Fragment {
+
+public class SettingFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_weather, container, false);
+        return inflater.inflate(R.layout.fragment_setting, container, false);
     }
 }
