@@ -19,7 +19,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:labelVisibilityMode="labeled"
-
+        app:itemTextColor="#ffffff"
+        android:background="#000000"
+        app:itemIconTint="#ffffff"
         app:menu="@menu/bottom" />
 
 </LinearLayout>
