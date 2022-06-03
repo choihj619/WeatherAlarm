@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/alarm_tab"
-        android:enabled="true"
-        android:title="알람"
-        android:icon="@drawable/ic_baseline_alarm_24"/>
 
     <item
         android:id="@+id/weather_tab"
         android:enabled="true"
         android:title="날씨"
         android:icon="@drawable/outline_cloud_24"/>
-    <item
-        android:id="@+id/setting_tab"
-        android:enabled="true"
-        android:title="설정"
-        android:icon="@drawable/ic_baseline_settings_24"/>
 </menu>

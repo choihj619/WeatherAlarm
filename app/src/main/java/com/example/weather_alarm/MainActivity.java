@@ -7,45 +7,37 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.weather_alarm.weather.WeatherFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity {
-    Fragment alarmFragment;
-    Fragment settingFragment;
-    Fragment weatherFragment;
+
+    BottomNavigationView bottomNavigationView;
+    WeatherFragment weatherFragment = new WeatherFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        weatherFragment = new Fragment();
+        bottomNavigationView = findViewById(R.id.nav_view);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, alarmFragment).commit();
-        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, weatherFragment).commit();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.alarm_tab:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, alarmFragment).commit();
-                        return true;
                     case R.id.weather_tab:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, weatherFragment).commit();
-                        return true;
-                    case R.id.setting_tab:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, settingFragment).commit();
                         return true;
                 }
                 return false;
             }
         });
-
-
-
     }
 
 }
