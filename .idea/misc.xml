@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudio/AndroidStudioProjects/WeatherAlarm/app/src/main/res/drawable/outline_ac_unit_24.xml" value="0.1955" />
+        <entry key="..\:/AndroidStudio/AndroidStudioProjects/WeatherAlarm/app/src/main/res/drawable/outline_air_20.xml" value="0.1955" />
+        <entry key="..\:/AndroidStudio/AndroidStudioProjects/WeatherAlarm/app/src/main/res/drawable/outline_air_24.xml" value="0.1955" />
+        <entry key="..\:/AndroidStudio/AndroidStudioProjects/WeatherAlarm/app/src/main/res/drawable/outline_umbrella_24.xml" value="0.1955" />
+        <entry key="..\:/AndroidStudio/AndroidStudioProjects/WeatherAlarm/app/src/main/res/layout/activity_loading.xml" value="0.358695652173913" />
+        <entry key="..\:/AndroidStudio/AndroidStudioProjects/WeatherAlarm/app/src/main/res/layout/activity_weather.xml" value="0.358695652173913" />
+        <entry key="..\:/AndroidStudio/AndroidStudioProjects/WeatherAlarm/app/src/main/res/layout/fragment_weather.xml" value="0.358695652173913" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/weather_alarm/app/src/main/res/drawable/ic_baseline_alarm_24.xml" value="0.2265" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/weather_alarm/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2265" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/weather_alarm/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />

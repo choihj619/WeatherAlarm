@@ -1,5 +1,6 @@
 package com.example.weather_alarm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -32,6 +33,23 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.nav_view);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, weatherFragment).commit();
+
+        Intent intent = getIntent();
+        double temp = intent.getDoubleExtra("temp",0);
+        double temp_min = intent.getDoubleExtra("temp_min",0);
+        double temp_max = intent.getDoubleExtra("temp_max",0);
+        double feels_like = intent.getDoubleExtra("feels_like",0);
+        double humidity = intent.getDoubleExtra("humidity",0);
+        String weather = intent.getStringExtra("weather");
+        Bundle bundle = new Bundle();
+        bundle.putDouble("temp", temp);
+        bundle.putDouble("temp_min",temp_min);
+        bundle.putDouble("temp_max",temp_max);
+        bundle.putDouble("feels_like",feels_like);
+        bundle.putDouble("humidity",humidity);
+        bundle.putString("weather",weather);
+
+        weatherFragment.setArguments(bundle);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
