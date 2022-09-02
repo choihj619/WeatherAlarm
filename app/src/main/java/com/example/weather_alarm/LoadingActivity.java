@@ -18,8 +18,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.weather_alarm.weather.WeatherFragment;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,11 +31,12 @@ import java.net.URL;
 
 public class LoadingActivity extends AppCompatActivity {
 
-    private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+    private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
+    private static final String DUST_URL = "http://api.openweathermap.org/data/2.5/air_pollution";
     private static final String API_KEY = "f39177e1dc29ea25501dbcf45c9a857e";
 
     String weatherMain="";
-    double temp=0, temp_min=0, temp_max=0, feels_like=0, humidity=0;
+    double temp=0, feels_like=0, humidity=0, pm10=0;
     double curLat, curLon;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -92,45 +91,65 @@ public class LoadingActivity extends AppCompatActivity {
 
     private void fetchData() {
 
-        String apiUrl = BASE_URL + "?lat=" + curLat + "&lon=" + curLon + "&appid=" + API_KEY + "&units=metric";
-                try {
-                    URL url = new URL(apiUrl);
-
-                    InputStream is = url.openStream();
-                    InputStreamReader isr = new InputStreamReader(is);
-                    BufferedReader reader = new BufferedReader(isr);
-
-                    StringBuffer buffer = new StringBuffer();
-                    String line = reader.readLine();
-                    while (line != null) {
-                        buffer.append(line + "\n");
-                        line = reader.readLine();
-                    }
-
-                    String jsonData = buffer.toString();
-
-                    JSONObject obj = new JSONObject(jsonData);
-
-                    JSONArray weatherList = (JSONArray) obj.get("weather");
-                    JSONObject weatherObj = weatherList.getJSONObject(0);
-                    weatherMain = weatherObj.getString("main");
-
-                    JSONObject mainObj = obj.getJSONObject("main");
-                    temp = mainObj.getDouble("temp");
-                    temp_max = mainObj.getDouble("temp_max");
-                    temp_min = mainObj.getDouble("temp_min");
-                    feels_like = mainObj.getDouble("feels_like");
-                    humidity = mainObj.getDouble("humidity");
+        String apiUrl = WEATHER_URL + "?lat=" + curLat + "&lon=" + curLon + "&appid=" + API_KEY + "&units=metric";
+        String dustUrl = DUST_URL + "?lat=" + curLat + "&lon=" + curLon + "&appid=" + API_KEY;
 
 
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+        try {
+            JSONObject obj1 = readUrl(apiUrl);
+            JSONObject obj2 = readUrl(dustUrl);
 
+            JSONArray weatherList = (JSONArray) obj1.get("weather");
+            JSONObject weatherObj = weatherList.getJSONObject(0);
+            weatherMain = weatherObj.getString("main");
+
+            JSONObject mainObj = obj1.getJSONObject("main");
+            temp = mainObj.getDouble("temp");
+            feels_like = mainObj.getDouble("feels_like");
+            humidity = mainObj.getDouble("humidity");
+
+            JSONArray dustList = (JSONArray) obj2.get("list");
+            JSONObject dustObj = dustList.getJSONObject(0);
+            JSONObject dustComponents = (JSONObject) dustObj.get("components");
+            pm10 = dustComponents.getDouble("pm10");
+            Log.d("pm10",  String.valueOf(pm10));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+    }
+
+    private JSONObject readUrl(String argUrl){
+        try {
+            URL url = new URL(argUrl);
+            InputStream is = url.openStream();
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader reader = new BufferedReader(isr);
+
+            StringBuffer buffer = new StringBuffer();
+            String line = reader.readLine();
+            while (line != null) {
+                buffer.append(line + "\n");
+                line = reader.readLine();
+            }
+
+            String jsonData = buffer.toString();
+
+            JSONObject obj = new JSONObject(jsonData);
+            return obj;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     private class MyAsyncTask extends AsyncTask<Void, Void, Void>
@@ -146,11 +165,10 @@ public class LoadingActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(LoadingActivity.this, MainActivity.class);
                 intent.putExtra("temp", temp);
-                intent.putExtra("temp_min", temp_min);
-                intent.putExtra("temp_max", temp_max);
                 intent.putExtra("feels_like", feels_like);
                 intent.putExtra("humidity", humidity);
                 intent.putExtra("weather", weatherMain);
+                intent.putExtra("pm10", pm10);
 
                 startActivity(intent);
 

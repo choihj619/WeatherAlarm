@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".weather.WeatherFragment"
     android:orientation="vertical"
-    android:weightSum="100">
+    android:weightSum="100"
+    android:id="@+id/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,9 +18,8 @@
             android:id="@+id/location_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/location"
+            android:foreground="@drawable/location"
             android:padding="20dp"
-            android:background="#FFFFFF"
             android:layout_margin="10dp" />
 
 
@@ -30,48 +30,25 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="20"
-        android:weightSum="3"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/temp_tv"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_height="match_parent"
             android:text="16도"
             android:textSize="48sp"
             android:gravity="center"
-            android:textColor="#000000"/>
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/nanum_gothic_regular"/>
 
-        <TextView
-            android:id="@+id/min_max_tv"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="16/8"
-            android:textSize="28sp"
-            android:textColor="#000000"/>
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="30"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/weather_iv"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="30"
+        android:layout_weight="70"
         android:orientation="horizontal"
         android:weightSum="3">
 
@@ -83,7 +60,8 @@
             android:text="미세먼지"
             android:textSize="36sp"
             android:gravity="center"
-            android:textColor="#000000"/>
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/nanum_gothic_regular"/>
 
         <TextView
             android:id="@+id/humidity_tv"
@@ -93,7 +71,8 @@
             android:text="습도"
             android:textSize="36sp"
             android:gravity="center"
-            android:textColor="#000000"/>
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/nanum_gothic_regular"/>
 
         <TextView
             android:id="@+id/feel_like_tv"
@@ -103,7 +82,8 @@
             android:text="체감온도"
             android:textSize="36sp"
             android:gravity="center"
-            android:textColor="#000000"/>
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/nanum_gothic_regular"/>
     </LinearLayout>
 
 </LinearLayout>

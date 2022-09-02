@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         double temp_max = intent.getDoubleExtra("temp_max",0);
         double feels_like = intent.getDoubleExtra("feels_like",0);
         double humidity = intent.getDoubleExtra("humidity",0);
+        double pm10 = intent.getDoubleExtra("pm10",0);
         String weather = intent.getStringExtra("weather");
         Bundle bundle = new Bundle();
         bundle.putDouble("temp", temp);
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         bundle.putDouble("feels_like",feels_like);
         bundle.putDouble("humidity",humidity);
         bundle.putString("weather",weather);
+        bundle.putDouble("pm10", pm10);
 
         weatherFragment.setArguments(bundle);
 
